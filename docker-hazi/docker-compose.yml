@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  htdocs:
+    image: php:7.4-apache
+    volumes:
+      - "./src/:/var/www/html"
+    ports:
+      - 8080:80
+      - 4433:443
+  database:
+    image: postgres:latest
+    volumes:
+      - "./database/:/docker-entrypoint-initdb.d"
+    environment:
+      - POSTGRES_DATABASE=docker_php
+      - POSTGRES_USER=docker_php
+      - POSTGRES_PASSWORD=POSTGRES_PASSWORD
+      - POSTGRES_ALLOW_EMPTY_PASSWORD=1
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
+    environment:
+      - PMA_HOST=database
+      - PMA_PORT=3306
