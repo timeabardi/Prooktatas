@@ -7,6 +7,8 @@
    <title>Products | {{ config('app.name') }}</title>
 </head>
 <body>
+  @include('public.layout.header')
   @yield('content')
+  @include('public.layout.footer')
 </body>
 </html>
