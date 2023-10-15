@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use App\Models\Order;
+use App\Models\Product;
 
 class OrderProduct extends Model
 {
@@ -22,8 +23,8 @@ class OrderProduct extends Model
         'quantity',
         'unit_price',
     ];
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function order() {
+        return $this->belongsTo(Order::class);
     }
     public function product() {
         return $this->hasOne(Product::class);

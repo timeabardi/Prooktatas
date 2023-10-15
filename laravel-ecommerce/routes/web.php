@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,22 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [ProductController::class, 'list']);
 
-Route::get('/product/list/{category}', [ProductController::class, 'list'])->name('product.list');
+Route::get('/product/list/{category}', [ProductController::class, 'list'])
+->name('product.list');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+
+Route::get('/checkout', function() {
+    //return view('checkout');
+    return 'checkout';
+})->name('checkout');
+
+Route::get('/wishlist', function() {
+    //return view('wishlist');
+    return 'wishlist';
+})->name('wishlist');
+
+Route::get('/contact', function() {
+    //return view('contact');
+    return 'contact';
+})->name('contact');

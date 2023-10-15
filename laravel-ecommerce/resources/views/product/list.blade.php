@@ -30,16 +30,24 @@
                 <div class="row">
                     @foreach($products as $product)
                     <div class="col-md-6 col-lg-5 col-xl-4">
-                        <div id="product-1" class="single-product">
+                        <div id="product-wrapper-{{$product->id}}" class="single-product product-image-bg">
                             <div class="part-1">
                                 <ul>
-                                    <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-heart"></i></a></li>
+                                    <li>
+                                        <a href="#" class="add-product-to-cart" data-product_id="{{$product->id}}">
+                                            <i class="fas fa-shopping-cart" data-product_id="{{$product->id}}"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript::" class="add-product-to-wishlist" data-product_id="{{$product->id}}">
+                                            <i class="fas fa-heart" data-product_id="{{$product->id}}"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="part-2">
                                 <h3 class="product-title">{{ $product->name }}</h3>
-                                <h4 class="product-price">{{ $product->unit_price }}</h4>
+                                <h4 class="product-price">{{ $product->unit_price }} Ft</h4>
                             </div>
                         </div>
                     </div>
@@ -51,3 +59,39 @@
 </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.eventListener('DOMContentLoaded', ()-> {
+            const addToCartButtons = document.querySelectorAll('.add-product-to-cart');
+            addToCartButtons.forEach((button) -> {
+                button.addEventListener('click', (event) => {
+
+                    event.preventDefault();
+
+                    const productId = event.target.dataset.product_id;
+                    const quantity = 1;
+
+                    window.axios.post('{{ route('cart.add') }}', {
+                        product_id: productId,
+                        quantity: quantity
+                    }).then((response) => {
+                        console.log(response);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                });
+            });
+        });
+    </script>
+@endpush
+
+@push('style')
+    <style>
+        @foreach($products as $product)
+        .section-products #product-wrapper-{{$product->id}} .part-1::before {
+        background: url("{{Vite::asset("resources/images/$product->image")}}") no-repeat center;
+        }
+        @endforeach
+    </style>
+@endpush

@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InstallController;
-//use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +20,13 @@ use App\Http\Controllers\InstallController;
   //  return $request->user();
 //});
 
-//Route::get('/', [HomeController::class, 'index']);
+//Chart api calls pl: /api/cart/count
 Route::get('/install', [InstallController::class, 'index']);
+Route::controller(CartController::class)->group(function() {
+  Route::prefix('cart')->group(function() {
+    Route::get('/count', 'count')->name('cart.count');
+    Route::post('/add', 'add')->name('cart.add');
+    Route::put('/update', 'update')->name('cart.update');
+    Route::delete('/remove/{id}/{quantity}', 'remove')->name('cart.remove');
+  });
+});
