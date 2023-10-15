@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +28,13 @@ Route::get('/checkout', function() {
     return 'checkout';
 })->name('checkout');
 
-Route::get('/wishlist', function() {
-    //return view('wishlist');
-    return 'wishlist';
-})->name('wishlist');
+Route::get('/wishlist', [WishController::class, 'index'])->name('wishlist');
 
 Route::get('/contact', function() {
     //return view('contact');
     return 'contact';
 })->name('contact');
+
+Route::get('/axios', function () {
+    return view('axios');
+});
