@@ -5,12 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class ExampleController extends Controller {
-    public function axios() {
-        //return view('axios', [
-        //    'name' => 'variable'
-        //]);
-        $name = request('name');
-        echo $name;
+    public function axios(Request $request, $name = null) {
+
+        dd($request);
+
+        if($name == null){
+            
+            return view('axios', [
+                'page' => 'Axios test',
+                'name' => $name
+            ]);
+        }
+
+        return response()->json([
+            'page' => 'Axios test',
+            'name' => $name
+        ]);
     }
 
 }

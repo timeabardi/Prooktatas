@@ -38,4 +38,4 @@ Route::get('/contact', function() {
     return view('axios');
 });*/
 
-Route::get('/axios', [ExampleController::class, 'axios'])->name('axios');
+Route::get('/axios/{name?}', [ExampleController::class, 'axios'])->name('axios');

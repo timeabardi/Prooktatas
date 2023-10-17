@@ -1,11 +1,15 @@
-<script>
-import axios from 'axios';
+@extends('layout.app')
 
-axios.get('/axios?variable=test')
-.then(response => {
-    console.log(response.data);
-})
-.catch(error => {
-    console.error(error);
-});
+@push('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    window.axios.get("{{ route('axios', ['test']) }}?valami=2")
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+});   
 </script>
+@endpush
