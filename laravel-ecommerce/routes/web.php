@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishController;
+use App\Http\Controllers\ExampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,17 +25,17 @@ Route::get('/product/list/{category}', [ProductController::class, 'list'])
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::get('/checkout', function() {
-    //return view('checkout');
     return 'checkout';
 })->name('checkout');
 
 Route::get('/wishlist', [WishController::class, 'index'])->name('wishlist');
 
 Route::get('/contact', function() {
-    //return view('contact');
     return 'contact';
 })->name('contact');
 
-Route::get('/axios', function () {
+/*Route::get('/axios', function () {
     return view('axios');
-});
+});*/
+
+Route::get('/axios', [ExampleController::class, 'axios'])->name('axios');
