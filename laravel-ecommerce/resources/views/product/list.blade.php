@@ -34,13 +34,13 @@
                             <div class="part-1">
                                 <ul>
                                     <li>
-                                        <a href="#" class="add-product-to-cart" data-product_id="{{$product->id}}">
-                                            <i class="fas fa-shopping-cart" data-product_id="{{$product->id}}"></i>
+                                        <a href="#" class="add-product-to-cart" data-product-id="{{$product->id}}">
+                                            <i class="fas fa-shopping-cart" data-product-id="{{$product->id}}"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript::" class="add-product-to-wishlist" data-product_id="{{$product->id}}">
-                                            <i class="fas fa-heart" data-product_id="{{$product->id}}"></i>
+                                        <a href="javascript:;" class="add-product-to-wishlist" data-product-id="{{$product->id}}">
+                                            <i class="fas fa-heart" data-product-id="{{$product->id}}"></i>
                                         </a>
                                     </li>
                                 </ul>
@@ -62,47 +62,57 @@
 
 @push('scripts')
     <script>
-        document.eventListener('DOMContentLoaded', ()-> {
+
+        function addProductToCart(productId, quantity)
+        {
+            window.axios.post('{{route('cart.add')}}', {
+                product_id: productId,
+                quantity: quantity
+            }).then((response) => {
+                if(
+                    (typeof response.data.status !== 'undefined' && response.data.status) &&
+                    (typeof response.data.message !== 'undefined' && response.data.message)
+                ){
+                    window.swal.fire({
+                        position: 'top-end',
+                        icon: response.data.status,
+                        title: response.data.message,
+                        showConfirmButton: false,
+                        toast: true,
+                        timer: 2500
+                    });
+                }else{
+                    window.swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Hiba történt',
+                        showConfirmButton: false,
+                        toast: true,
+                        timer: 2500
+                    });
+                }
+                window.refreshCartCount();
+            }).catch((error) => {
+                window.swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Hiba történt',
+                    showConfirmButton: false,
+                    toast: true,
+                    timer: 2500
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
             const addToCartButtons = document.querySelectorAll('.add-product-to-cart');
-            const addToWishButtons = document.querySelectorAll('.add-product-to-wishlist');
-
-            addToCartButtons.forEach((button) -> {
+            addToCartButtons.forEach((button) => {
                 button.addEventListener('click', (event) => {
-
                     event.preventDefault();
-
-                    const productId = event.target.dataset.product_id;
-                    const quantity = 1;
-
-                    window.axios.post('{{ route('cart.add') }}', {
-                        product_id: productId,
-                        quantity: quantity
-                    }).then((response) => {
-                        console.log(response);
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+                    addProductToCart(event.target.dataset.productId, 1);
                 });
             });
-
-            addToWishButtons.forEach((button) -> {
-                button.addEventListener('click', (event) => {
-
-                    event.preventDefault();
-
-                    const productId = event.target.dataset.product_id;
-                    const quantity = 1;
-
-                    window.axios.post('{{ route('wishlist.add') }}', {
-                        product_id: productId,
-                        quantity: quantity
-                    }).then((response) => {
-                        console.log(response);
-                    }).catch((error) => {
-                        console.log(error);
-                    });
-                });
-            });
+           
         });
     </script>
 @endpush
@@ -111,7 +121,7 @@
     <style>
         @foreach($products as $product)
         .section-products #product-wrapper-{{$product->id}} .part-1::before {
-        background: url("{{Vite::asset("resources/images/$product->image")}}") no-repeat center;
+            background: url("@if(str_contains($product->image, 'http')) {{ $product->image }} @else {{Vite::asset("resources/images/$product->image")}} @endif") no-repeat;
         }
         @endforeach
     </style>

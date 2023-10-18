@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\ProductCategory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+use App\Models\ProductCategory;
 
 class Product extends Model
 {
@@ -18,12 +19,18 @@ class Product extends Model
     protected $fillable = [
         'product_category_id',
         'name',
-        'description',
+        'descripton',
         'image',
         'stock',
         'unit_price',
     ];
-    public function productCategory() {
+
+    public function productCategory()
+    {
         return $this->belongsTo(ProductCategory::class);
+    }
+
+    public function unitPrice(){
+        return number_format($this->unit_price, 0, ',', '.');
     }
 }

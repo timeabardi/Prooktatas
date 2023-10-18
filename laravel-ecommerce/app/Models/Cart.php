@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+use App\Models\CartProduct;
 
 class Cart extends Model
 {
@@ -17,4 +19,9 @@ class Cart extends Model
     protected $fillable = [
         'session_token'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(CartProduct::class);
+    }
 }
