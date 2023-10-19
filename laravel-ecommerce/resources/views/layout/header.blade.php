@@ -20,6 +20,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('wishlist') }}">
                             <i class="fas fa-heart"></i>
+                            <span class="wishlist-count-wrapper position-absolute top-2 start-80 translate-middle badge rounded-pill bg-danger"></span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -38,6 +39,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             window.refreshCartCount();
+            window.refreshWishlistCount();
         });
     </script>
 @endpush

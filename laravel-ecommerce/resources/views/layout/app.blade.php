@@ -32,6 +32,16 @@
                     }
                 });
             }
+
+            window.refreshWishlistCount = function(){
+                window.axios.get('{{route('wishlist.count')}}').then((response) => {
+                    if(typeof response.data.count !== 'undefined' && response.data.count){
+                        document.querySelector('.wishlist-count-wrapper').innerHTML = response.data.count;
+                    }else{
+                        document.querySelector('.wishlist-count-wrapper').innerHTML = 0;
+                    }
+                });
+            }
         </script>
     </body>
 </html>

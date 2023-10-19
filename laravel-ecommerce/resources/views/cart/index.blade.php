@@ -23,13 +23,13 @@
                                     <div class="row mb-2">
                                         <div class="col-12 col-lg-3 mb-2">
                                             <div class="cart-product-image">
-                                                <!--<img src="
+                                              <!--<img src="
                                                 @if(str_contains($cart_product->product->image, 'http')) 
                                                     {{ $cart_product->product->image }} 
                                                 @else 
                                                     {{Vite::asset('resources/images/{$cart_product->product->image}')}} 
                                                 @endif
-                                                " alt="" class="w-100">-->
+                                                " alt="" class="w-100">--> 
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center align-items-lg-start mb-2 mb-lg-0">
