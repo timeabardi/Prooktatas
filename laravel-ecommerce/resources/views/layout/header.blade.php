@@ -1,3 +1,4 @@
+@php if(!isset($page)) $page = ''; @endphp
 <header class="mb-2 border">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -20,7 +21,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('wishlist') }}">
                             <i class="fas fa-heart"></i>
-                            <span class="wishlist-count-wrapper position-absolute top-2 start-80 translate-middle badge rounded-pill bg-danger"></span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -39,7 +39,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             window.refreshCartCount();
-            window.refreshWishlistCount();
         });
     </script>
 @endpush

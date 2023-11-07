@@ -39,7 +39,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="add-product-to-wishlist" data-product-id="{{$product->id}}">
+                                        <a href="javascript:;" class="add-product-to-wishlist" data-product-id="{{$product->id}}">
                                             <i class="fas fa-heart" data-product-id="{{$product->id}}"></i>
                                         </a>
                                     </li>
@@ -79,7 +79,8 @@
                         title: response.data.message,
                         showConfirmButton: false,
                         toast: true,
-                        timer: 2500
+                        timer: 2500,
+                        showCloseButton: true,
                     });
                 }else{
                     window.swal.fire({
@@ -88,7 +89,8 @@
                         title: 'Hiba történt',
                         showConfirmButton: false,
                         toast: true,
-                        timer: 2500
+                        timer: 2500,
+                        showCloseButton: true,
                     });
                 }
                 window.refreshCartCount();
@@ -99,47 +101,8 @@
                     title: 'Hiba történt',
                     showConfirmButton: false,
                     toast: true,
-                    timer: 2500
-                });
-            });
-        }
-
-        function addProductToWishlist(productId)
-        {
-            window.axios.post('{{route('wishlist.add')}}', {
-                product_id: productId,
-            }).then((response) => {
-                if(
-                    (typeof response.data.status !== 'undefined' && response.data.status) &&
-                    (typeof response.data.message !== 'undefined' && response.data.message)
-                ){
-                    window.swal.fire({
-                        position: 'top-end',
-                        icon: response.data.status,
-                        title: response.data.message,
-                        showConfirmButton: false,
-                        toast: true,
-                        timer: 2500
-                    });
-                }else{
-                    window.swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Hiba történt',
-                        showConfirmButton: false,
-                        toast: true,
-                        timer: 2500
-                    });
-                }
-                window.refreshWishlistCount();
-            }).catch((error) => {
-                window.swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Hiba történt',
-                    showConfirmButton: false,
-                    toast: true,
-                    timer: 2500
+                    timer: 2500,
+                    showCloseButton: true,
                 });
             });
         }
@@ -150,14 +113,6 @@
                 button.addEventListener('click', (event) => {
                     event.preventDefault();
                     addProductToCart(event.target.dataset.productId, 1);
-                });
-            });
-
-            const addToWishlistButtons = document.querySelectorAll('.add-product-to-wishlist');
-            addToWishlistButtons.forEach((button) => {
-                button.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    addProductToWishlist(event.target.dataset.productId, 1);
                 });
             });
            

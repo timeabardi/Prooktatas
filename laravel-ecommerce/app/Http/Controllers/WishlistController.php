@@ -7,9 +7,9 @@ use App\Models\Wishlist;
 use App\Models\WishlistProduct;
 use App\Models\Product;
 
-class WishController extends Controller {
+class WishlistController extends Controller {
     public function index() {
-        $wishlistProducts = Wishlistproduct::whereHas('wishlist', function ($query) {
+        $wishlistProducts = WishlistProduct::whereHas('wishlist', function ($query) {
             $query->where('session_token', request()->session()->token());
         })->get();
 
@@ -19,7 +19,6 @@ class WishController extends Controller {
         ]);
     }
     public function count() {
-        //'count' => 8
         return response()->json([
             'count' => Wishlistproduct::whereHas('wishlist', function($query){
                 $query->where('session_token', request()->session()->token());
