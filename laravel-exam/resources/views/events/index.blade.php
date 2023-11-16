@@ -2,13 +2,6 @@
     <x-slot name="header">
     <h1 class="font-semibold text-xl text-gray-800 leading-tight"> {{ __('Events') }}</h1>
     <div>
-        @if(session()->has('success'))
-        <div>
-            {{session('success')}}
-        </div>
-        @endif
-    </div>
-    <div>
         <h2><a href="{{route('events.index')}}">List</a></h2>
         <h2><a href="{{route('events.trash')}}">Trash</a></h2>
     </div>
@@ -51,6 +44,13 @@
     </table>
     <div>
         <a class="btn btn-primary" href="{{route('events.create')}}">Create an event</a>
+    </div>
+    <div style="text-align:center;">
+        @if(session()->has('success'))
+        <div>
+            {{session('success')}}
+        </div>
+        @endif
     </div>
     </div>
     </div>
