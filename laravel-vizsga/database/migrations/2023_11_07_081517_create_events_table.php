@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('type');
             $table->string('desc');
-            $table->time('event_start_at')->nullable();
-            $table->time('published_at')->nullable();
+            $table->datetime('event_start_at')->nullable();
+            $table->datetime('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

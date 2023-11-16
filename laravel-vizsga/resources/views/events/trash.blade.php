@@ -17,9 +17,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-    <table class="table" style="width:100%;text-align:center">
+    <table class="display nowrap" style="width:100%;text-align:center">
         <tr>
-            <th scope="col">ID</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Type</th>
             <th>Description</th>
@@ -37,21 +37,18 @@
             <td>{{$event->event_start_at}}</td>
             <td>{{$event->published_at}}</td>
             <td>
-                <a href="{{route('events.edit', ['event' => $event])}}">Edit</a>
+                <a href="{{route('events.restore', ['event' => $event])}}">Restore</a>
             </td>
             <td>
-                <form method="post" action="{{route('events.delete', ['event' => $event])}}">
+                <form method="post" action="{{route('events.force_delete', ['event' => $event])}}">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Force delete">
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
-    <div>
-        <a class="btn btn-primary" href="{{route('events.create')}}">Create an event</a>
-    </div>
     </div>
     </div>
     </div>
