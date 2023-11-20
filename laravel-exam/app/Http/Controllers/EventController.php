@@ -21,7 +21,7 @@ class EventController extends Controller
             'published_at' => 'required|date_format:Y-m-d H:i:s'
         ]);
         $newEvent = Event::create($data);
-        return redirect(route('events.index'));
+        return redirect(route('events.index'))->with('success', 'Event created successfully');
     }
     public function edit(Event $event) {
         return view('events.edit', ['event' => $event]);

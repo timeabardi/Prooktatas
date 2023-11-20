@@ -1,42 +1,46 @@
 <x-app-layout>
     <x-slot name="header">
     <h1 class="font-semibold text-xl text-gray-800 leading-tight"> {{ __('Events') }}</h1>
-    <div>
-        <h2><a href="{{route('events.index')}}">List</a></h2>
-        <h2><a href="{{route('events.trash')}}">Trash</a></h2>
+    <div class="inline-flex rounded-md shadow-sm " role="group">
+        <button type="button" class="px-4 py-2 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+        <a href="{{route('events.index')}}">List</a>
+        </button>
+        <button type="button" class="px-4 py-2 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+        <a href="{{route('events.trash')}}">Trash</a>
+        </button>
     </div>
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-    <table class="display nowrap" style="width:100%;text-align:center">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-5">
+    <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Event start at</th>
-            <th>Published at</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th scope="col" class="px-6 py-3 text-sm uppercase">ID</th>
+            <th scope="col" class="px-6 py-3 text-sm uppercase">Name</th>
+            <th scope="col" class="px-6 py-3 text-sm uppercase">Type</th>
+            <th scope="col" class="px-6 py-3 text-sm uppercase">Description</th>
+            <th scope="col" class="px-6 py-3 text-sm uppercase">Event start at</th>
+            <th scope="col" class="px-6 py-3 text-sm uppercase">Published at</th>
+            <th colspan=2></th>
         </tr>
         @foreach($events as $event)
-        <tr>
-            <td>{{$event->id}}</td>
-            <td>{{$event->name}}</td>
-            <td>{{$event->type}}</td>
-            <td>{{$event->desc}}</td>
-            <td>{{$event->event_start_at}}</td>
-            <td>{{$event->published_at}}</td>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4 text-sm">{{$event->id}}</td>
+            <td class="px-6 py-4 text-sm">{{$event->name}}</td>
+            <td class="px-6 py-4 text-sm">{{$event->type}}</td>
+            <td class="px-6 py-4 text-sm">{{$event->desc}}</td>
+            <td class="px-6 py-4 text-sm">{{$event->event_start_at}}</td>
+            <td class="px-6 py-4 text-sm">{{$event->published_at}}</td>
             <td>
-                <a href="{{route('events.restore', ['event' => $event])}}">Restore</a>
+                <a href="{{route('events.restore', ['event' => $event])}}" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">RESTORE</a>
             </td>
             <td>
                 <form method="post" action="{{route('events.force_delete', ['event' => $event])}}">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Force delete">
+                    <input type="submit" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded cursor-pointer" value="FORCE DELETE">
                 </form>
             </td>
         </tr>
