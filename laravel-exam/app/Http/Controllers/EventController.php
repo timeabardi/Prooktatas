@@ -3,11 +3,25 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Carbon\Carbon;
 class EventController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $events = Event::all();
         return view('events.index', ['events'=> $events]);
+    }
+
+    public function welcome(Request $request) {
+        $filter = $request->query('start_date');
+        $data = $request->validate(['start_date' => 'date_format:Y-m-d H:i:s']);
+            if (!empty($filter)) {
+                $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $filter);
+                $events = Event::where('published_at', '>=', $startDate)
+                ->get();
+            } else {
+                $events = Event::all();
+            }
+            return view('welcome', ['events'=> $events]);
     }
     public function create() {
         return view('events.create');
@@ -53,6 +67,10 @@ class EventController extends Controller
          $data->restore();
          return redirect(route('events.index'))->with('success', 'Event restored successfully');
      }
+     public function restoreall(Request $request) {
+        Event::onlyTrashed()->restore();
+        return redirect(route('events.index'))->with('success', 'All event restored successfully');
+    }
      public function force_delete(Request $request) {
          $data = Event::where('id', $request->event);
          $data->forceDelete();

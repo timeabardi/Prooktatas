@@ -22,7 +22,7 @@
     </div>
                 <div class="p-6 text-gray-900"> 
                 <div style="width:100%;text-align:right">
-                <a class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" href="{{route('events.create')}}">Create an event</a>
+                <a class="bg-green-700 text-sm hover:bg-green-600 text-white font-bold py-2 px-4 rounded" href="{{route('events.create')}}">CREATE EVENT</a>
                 </div>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-5">
     <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
