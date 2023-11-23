@@ -69,7 +69,7 @@ class EventController extends Controller
      }
      public function restoreall(Request $request) {
         Event::onlyTrashed()->restore();
-        return redirect(route('events.index'))->with('success', 'All event restored successfully');
+        return redirect(route('events.index'))->with('success', 'All events restored successfully');
     }
      public function force_delete(Request $request) {
          $data = Event::where('id', $request->event);
