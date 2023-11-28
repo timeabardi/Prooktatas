@@ -35,8 +35,8 @@
     <div class="col">
       <label for="start-date" class="font-semibold text-xl text-gray-800 leading-tight">Published at from</label>
     </div>
-    <div class="col">   
-      <input type="text" class="form-control" id="start_date" name="start_date" placeholder="2023-11-02 10:00:00" value="{{Request('start_date')}}">
+    <div class="col">
+      <input type="datetime-local" step="1" class="form-control" id="start_date" name="start_date" value="{{Request('start_date')}}">
             @error('start_date')
             <span class="text-red-500">{{ $message }}</span>
             @enderror

@@ -55,21 +55,7 @@
             <label>Event start at</label>
             </div>
             <div>
-            <template>
-    <date-pick v-model="date"></date-pick>
-</template>
-
-<script>
-import DatePick from 'vue-date-pick';
-import 'vue-date-pick/dist/vueDatePick.css';
-
-export default {
-    components: {DatePick},
-    data: () => ({
-        date: '2019-01-01'
-    })
-};
-</script>
+            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="datetime-local" step="1" name="event_start_at">
                 @error('event_start_at')
                 <span class="alert alert-danger text-red-500">{{ $message }}</span>
                 @enderror
@@ -78,7 +64,7 @@ export default {
             <label>Published at</label>
             </div>
             <div>
-            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" name="published_at">
+            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="datetime-local" step="1" name="published_at">
                 @error('published_at')
                 <span class="alert alert-danger text-red-500">{{ $message }}</span>
                 @enderror

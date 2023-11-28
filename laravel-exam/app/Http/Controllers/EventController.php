@@ -13,9 +13,8 @@ class EventController extends Controller
 
     public function welcome(Request $request) {
         $filter = $request->query('start_date');
-        $data = $request->validate(['start_date' => 'date_format:Y-m-d H:i:s']);
             if (!empty($filter)) {
-                $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $filter);
+                $startDate = $filter;
                 $events = Event::where('published_at', '>=', $startDate)
                 ->get();
             } else {
@@ -31,8 +30,8 @@ class EventController extends Controller
             'name' => 'required',
             'type' => 'required',
             'desc' => 'required',
-            'event_start_at' => 'required|date_format:Y-m-d H:i:s',
-            'published_at' => 'required|date_format:Y-m-d H:i:s'
+            'event_start_at' => 'required',
+            'published_at' => 'required'
         ]);
         $newEvent = Event::create($data);
         return redirect(route('events.index'))->with('success', 'Event created successfully');
@@ -45,8 +44,8 @@ class EventController extends Controller
              'name' => 'required',
              'type' => 'required',
              'desc' => 'required',
-             'event_start_at' => 'required|date_format:Y-m-d H:i:s',
-             'published_at' => 'required|date_format:Y-m-d H:i:s'
+             'event_start_at' => 'required',
+             'published_at' => 'required'
          ]);
          $event->update($data);
          

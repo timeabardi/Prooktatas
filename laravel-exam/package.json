@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@vuepic/vue-datepicker": "^7.2.2"
+        "@vuepic/vue-datepicker": "^7.2.2",
+        "flatpickr": "^4.6.13"
     }
 }
