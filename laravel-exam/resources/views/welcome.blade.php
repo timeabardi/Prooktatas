@@ -70,7 +70,11 @@
             <td class="px-6 py-4 text-sm">{{$event->type}}</td>
             <td class="px-6 py-4 text-sm">{{$event->desc}}</td>
             <td class="px-6 py-4 text-sm">{{$event->event_start_at}}</td>
-            <td class="px-6 py-4 text-sm">{{$event->published_at}}</td>
+            <td class="px-6 py-4 text-sm">
+            @if(!empty($event->published_at))
+                hozzáadva
+                 @endif
+            </td>
         </tr>
         @endforeach
     </table>

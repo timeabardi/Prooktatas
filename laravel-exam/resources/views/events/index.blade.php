@@ -42,7 +42,11 @@
             <td class="px-6 py-4 text-sm">{{$event->type}}</td>
             <td class="px-6 py-4 text-sm">{{$event->desc}}</td>
             <td class="px-6 py-4 text-sm">{{$event->event_start_at}}</td>
-            <td class="px-6 py-4 text-sm">{{$event->published_at}}</td>
+            <td class="px-6 py-4 text-sm">
+            @if(!empty($event->published_at))
+                hozzáadva
+                 @endif
+            </td>
             <td class="px-6 py-4 text-sm">
                 <a href="{{route('events.edit', ['event' => $event])}}" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer">EDIT</a>
             </td>
