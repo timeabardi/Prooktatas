@@ -1,13 +1,10 @@
 <x-app-layout>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <x-slot name="header">
     <h1 class="font-semibold text-xl text-gray-800 leading-tight"> {{ __('Events') }}</h1>
     <div class="inline-flex rounded-md shadow-sm " role="group">
-        <button type="button" class="px-4 py-2 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-        <a href="{{route('events.index')}}">List</a>
-        </button>
-        <button type="button" class="px-4 py-2 text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-        <a href="{{route('events.trash')}}">Trash</a>
-        </button>
+    <button type="submit" class="btn btn-outline-light text-dark py-2 px-4 cursor-pointer" onclick="window.location='{{route('events.index')}}'">List</button>
+    <button type="submit" class="btn btn-outline-light text-dark py-2 px-4 cursor-pointer" onclick="window.location='{{route('events.trash')}}'">Trash</button>
     </div>
     </x-slot>
     <div class="py-12">
@@ -72,7 +69,7 @@
             <div>
             </div>
             <div>
-            <input type="submit" class="bg-green-700 hover:bg-green-600 text-white font-bold w-full py-2 px-4 rounded cursor-pointer" value="Save a new event">
+            <input type="submit" class="bg-success text-white font-bold w-full py-2 px-4 rounded cursor-pointer" value="Save a new event">
             </div>
         </div>
     </form>

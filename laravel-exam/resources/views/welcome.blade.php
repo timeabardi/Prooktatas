@@ -42,8 +42,8 @@
             @enderror
     </div>
     <div class="col">
-      <button type="submit" class="bg-blue-700 text-sm hover:bg-blue-600 text-white py-2 px-4 rounded">Filter</button>
-      <a href="{{ request()->url() }}" class="bg-blue-700 text-sm hover:bg-blue-600 text-white py-2 px-4 rounded">All</a>
+      <button type="submit" class="btn btn-primary py-2 px-4">Filter</button>
+      <a href="{{ request()->url() }}" class="btn btn-primary py-2 px-4">All</a>
     </div>
     </div>
     </form>
@@ -53,8 +53,8 @@
    
   </div>
 
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-5">
-    <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="table w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-5">
+    <thead class="text-xs text-white bg-dark">
         <tr>
             <th scope="col" class="px-6 py-3 text-sm uppercase">ID</th>
             <th scope="col" class="px-6 py-3 text-sm uppercase">Name</th>
@@ -64,7 +64,7 @@
             <th scope="col" class="px-6 py-3 text-sm uppercase">Published at</th>
         </tr>
         @foreach($events as $event)
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr class="bg-white text-dark border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="px-6 py-4 text-sm">{{$event->id}}</td>
             <td class="px-6 py-4 text-sm">{{$event->name}}</td>
             <td class="px-6 py-4 text-sm">{{$event->type}}</td>
